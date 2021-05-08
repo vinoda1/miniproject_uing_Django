@@ -2,5 +2,5 @@
 
 Technical languages: Python , Css, HTML, Bootstrap
 FrameWork used :  Django Webframe work
-DataBase : Sqlite
+DataBase : Sqlite3
 in this project I implemented simple shopping cart with CRUD operation , we can do  this operations upload , Update , delete and Create 
