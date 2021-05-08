@@ -1,0 +1,23 @@
+{% block content %}
+<body style="background-color:rgb(77, 223, 84);">
+<center>
+    <h1 class='display-3' style="background-color: rgb(14, 108, 190);
+    color: #112233;">Upload Books</h1>
+    
+    <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <!--<table>{{upload_form.as_table}}</table>-->
+    <table class='w-50 table table-light' style="border-radius: 10px;">
+    {% for field in upload_form %}
+    <tr>
+        <th>{{field.label}}</th>
+        <td>{{field}}</td>
+    </tr>
+    {%endfor%}
+    </table>
+    <button type="submit" class="btn btn-lg btn-warning">Submit</button>
+
+    </form>
+</center>
+{% endblock %}
+</body>

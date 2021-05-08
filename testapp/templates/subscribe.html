@@ -1,0 +1,35 @@
+
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Send Email</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </head>
+    <body> 
+        <div class="container">
+            <div class="jumbotron">
+
+         
+        <h2>Please Subscribe to get more Notification from FarmCart shopping center</h2>
+        <center>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <br><br>
+            Subject:<input type="text" name="subject"></BR></BR>
+            Message:<input type="text" name="body"></BR></BR>
+           
+                <a href="/index" class="btn btn-primary">HOME</a>
+                <a href="/success" class="btn btn-success">SUBMIT</a>
+                
+            
+            </center>   
+        </form>
+    </div>
+</div>
+    </body>
+    </html>    

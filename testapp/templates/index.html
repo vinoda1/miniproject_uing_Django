@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script
+  src="https://code.jquery.com/jquery-3.5.1.js"       
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="css/style.css">
+        <title>welcome to FarmCart</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body style="background-color:rgb(207, 126, 68);">
+        <div class="container" >
+            <nav class="navbar navbar-expand-lg  navbar-dark bg-success">
+                <a class="navbar-brand" href="/home">Farmer Cart</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+              
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/contact">Contact us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/About_us">About us</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="{% url 'upload-product' %}">Upload</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/accounts/login">Login</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/logout">Log Out</a>
+                      </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        My Cart
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a id="welcome" class="dropdown-item" href="/display">Action</a>
+                        
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/subscribe">Subscribe</a>
+                    </li>
+                  </ul>
+                  
+                  <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+                  </form>
+                </div>
+              </nav>
+        </div>
+
+        <div class="container" align="center">
+            <div class="row">
+                <div class="col">
+                    <div class="card">
+                        <form class="card-body">
+                            <div class="row">
+                              <div class = "col">
+                                <input type="button" class="btn btn-danger" value="Covid-19" onclick="showAlert()">
+                              </div>
+                              <div class = "col">
+                                <h1 style="color:green;">FarmCart</h1>
+                              </div>
+                              <div class ="col">
+                                <button onclick="/subscribe" class = "btn btn-success"> subscribe</button>
+                              </div>
+                                <div class="col">
+                                    <input  type="search" name="item_name" value="">
+    
+                                </div>
+                                <div class="col">
+                                    <input  type="submit" name="" class="btn btn-warning" value="Search">
+    
+                                </div>
+    
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>    
+        </div>
+
+
+        <div class="container" align="center">
+          <div class="row">
+              {% for i in product_item %}
+              <div class="col-md-3">
+                  <div class="card">
+                      <div class="card-body">
+                          <img class="card-img-top" src="{{i.picture.url}}" alt="Card image cap">
+                          <div id=nm{{i.id}} class="card-title">
+                              <b>{{i.name}}</b>
+                          </div>
+                          <div class="card-title" id="oprice">
+                               <strike><b>INR.{{i.original_price}}</b></strike>
+                          </div>
+                          <div class="card-title" id="dprice">
+                              <b>INR.{{i.discounted_price}}</b>
+                         </div>
+                         <div class="card-title" id="dprice">
+                          <p>{{i.description}}</p>
+                          </div>
+                          <form method="" action="/display">
+                              <button class="btn btn-warning">Buy Now</button>&nbsp;&nbsp;
+                              <button  id={{i.id}} class="btn atc btn-success">Add To Cart</button>
+                          </form>
+                              <center>
+                              
+                                <a href="delete/{{i.id}}" class="btn btn-danger" id = '{{i.id}}'>delete</a>
+                                <a href="update/{{i.id}}" class="btn btn-warning" id = '{{i.id}}'>edit</a>
+                             </center>
+                      </div>
+                  </div>
+  
+              
+              </div>
+              {% endfor %}
+          </div>
+       </div>
+      
+       <nav aria-label="using pagination">
+        <ul class="pagination justify-content-center">
+          <li class="page-item"><a class="page-link" href="/index">Previous</a></li>
+          <li class="page-item"><a class="page-link" href="/index">1</a></li>
+          <li class="page-item"><a class="page-link" href="/index">2</a></li>
+          <li class="page-item"><a class="page-link" href="/index">3</a></li>
+          <li class="page-item"><a class="page-link" href="/index">Next</a></li>
+        </ul>
+          </nav>
+          </div>
+      </div>
+      </body>
+  
+  <script type="text/javascript">
+  function showAlert() {
+    alert ("‎How to Protect Yourself Against Covid-19?\
+    1. Wash your Hands Often. \
+    2. Cough into your Elbow.\
+    3. Don't touch your Face. \
+    4. Stay more than 3 feet apart.\
+    5. Stay home,stay safe");
+  }
+
+  
+  if(localStorage.getItem('cart')==null)
+  {
+      var cart={}
+  }
+  else{
+      cart=JSON.parse(localStorage.getItem('cart'))
+  }
+  
+  
+  $(document).on('click','.atc',function()
+  {
+      var id=this.id.toString() 
+      console.log(id)
+  
+  
+  if(cart[id]!=undefined)
+  {
+      cart[id]=cart[id]+1
+  }
+  else{
+      cart[id]=1
+  }
+  console.log(cart)
+  
+  
+  localStorage.setItem('cart',JSON.stringify(cart))
+  });
+  
+  
+  myCart(cart)
+  
+  function myCart(cart)
+  {
+     
+      var cartString=""
+      cartString=cartString+"<h6>My Cart</h6>"
+  
+  
+  
+      for(var i in cart)   
+      {
+          cartString=cartString+document.getElementById('nm'+i).innerHTML + "Qty:" + cart[i] + "<br>"    
+                              
+      }
+      cartString=cartString+"<a href='/display' class='btn btn-primary'>Checkout</a>"
+   document.getElementById("welcome").innerHTML=cartString
+  
+  
+  }
+  
+  
+  
+  
+  
+  </script>
+  
+  
+  
+  
+  
+  
+  </html>
+  
